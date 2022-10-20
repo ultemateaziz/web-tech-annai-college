@@ -1,0 +1,51 @@
+<html>
+    <title>
+        <h1> HTML Javascript page </h1>
+    </title>
+    <head>
+        <script type="text/javascript" src="vkbeautify.0.99.00.beta.js"></script>
+    </head>
+    <body>
+         <h1>Employees</h1>
+        <button type="button" onclick="displayXml()">Display Employee xml.</button>
+        <hr/>
+        <p id="empDetails"></p>
+        <script>
+            var xmlString = "<employees>";
+            xmlString = xmlString +"    <employee id='1'>";
+            xmlString = xmlString +"        <firstName>OneFirstName</firstName>";
+            xmlString = xmlString +"        <lastname>OneSecondName</lastname>";
+            xmlString = xmlString +"    </employee>";
+            xmlString = xmlString +"    <employee id='2'>";
+            xmlString = xmlString +"        <firstname>TwoFirstName</firstname>";
+            xmlString = xmlString +"        <lastname>TwoSecondName</lastname>";
+            xmlString = xmlString +"    </employee>";
+            xmlString = xmlString +"</employees>";
+
+            function displayXml() {
+                document.getElementById('empDetails').innerHTML = xmlString;
+            };
+
+            function htmlEntities(str) {
+                    var htmlString = String(str).replace(/&/g, '&amp;').replace(/</g,     '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+                    return htmlString;
+            }
+
+            function displayXml() {
+                        // Normal display of xml
+                        document.getElementById('empDetails').innerHTML = xmlString;
+                        alert("Normal display: \n" + xmlString);
+
+                        // HTML conversion only
+                        var htmlString = htmlEntities(xmlString);
+                        document.getElementById('empDetails').innerHTML = htmlString;
+                        alert("HTML formatted display: \n" + htmlString);
+
+                        // Using vkbeautify
+                        var beautifyHtmlString = vkbeautify.xml(xmlString);
+                        document.getElementById('empDetails').innerHTML = beautifyHtmlString;
+                        alert("VKbeautify display: \n" + beautifyHtmlString);
+                    };
+        </script>
+    </body>
+</html>
